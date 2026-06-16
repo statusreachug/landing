@@ -5,408 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StatusReach UG</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #F5F7FA;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #1D9E75, #0F1A2E);
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header-logo {
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-
-        .header-text {
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .header-sub {
-            color: rgba(255,255,255,0.7);
-            font-size: 12px;
-        }
-
-        .loading-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            gap: 16px;
-        }
-
-        .spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid #E5E7EB;
-            border-top: 4px solid #1D9E75;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            color: #6B7280;
-            font-size: 14px;
-        }
-
-        .error-screen {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            gap: 16px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .error-icon {
-            font-size: 64px;
-        }
-
-        .error-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0F1A2E;
-        }
-
-        .error-message {
-            font-size: 14px;
-            color: #6B7280;
-            max-width: 300px;
-        }
-
-        .main-content {
-            display: none;
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 0 0 40px 0;
-        }
-
-        .ad-image-container {
-            width: 100%;
-            background: #E5E7EB;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ad-image {
-            width: 100%;
-            max-height: 320px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .ad-image-placeholder {
-            width: 100%;
-            height: 240px;
-            background: linear-gradient(135deg, #1D9E75, #0F1A2E);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .ad-image-placeholder .icon {
-            font-size: 48px;
-            opacity: 0.8;
-        }
-
-        .ad-image-placeholder .text {
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .content-section {
-            background: white;
-            margin: 12px;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-        }
-
-        .business-name {
-            font-size: 22px;
-            font-weight: 700;
-            color: #0F1A2E;
-            margin-bottom: 4px;
-        }
-
-        .campaign-title {
-            font-size: 16px;
-            color: #1D9E75;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .campaign-description {
-            font-size: 14px;
-            color: #6B7280;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-
-        .campaign-caption {
-            font-size: 14px;
-            color: #0F1A2E;
-            font-style: italic;
-            padding: 12px;
-            background: #F5F7FA;
-            border-radius: 8px;
-            border-left: 3px solid #1D9E75;
-        }
-
-        .location-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: #E8F5E9;
-            color: #1D9E75;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            margin-top: 12px;
-        }
-
-        .form-section {
-            background: white;
-            margin: 0 12px 12px;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-        }
-
-        .form-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0F1A2E;
-            margin-bottom: 4px;
-        }
-
-        .form-subtitle {
-            font-size: 13px;
-            color: #6B7280;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 6px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1.5px solid #E5E7EB;
-            border-radius: 12px;
-            font-size: 15px;
-            color: #0F1A2E;
-            background: #F9FAFB;
-            outline: none;
-            transition: border-color 0.2s;
-            font-family: inherit;
-        }
-
-        .form-input:focus {
-            border-color: #1D9E75;
-            background: white;
-        }
-
-        .phone-row {
-            display: flex;
-            gap: 8px;
-        }
-
-        .phone-prefix {
-            padding: 14px 12px;
-            border: 1.5px solid #E5E7EB;
-            border-radius: 12px;
-            font-size: 15px;
-            color: #0F1A2E;
-            background: #F9FAFB;
-            font-weight: 600;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .phone-input {
-            flex: 1;
-        }
-
-        textarea.form-input {
-            resize: none;
-            min-height: 100px;
-        }
-
-        .send-button {
-            width: 100%;
-            padding: 16px;
-            background: #25D366;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: background 0.2s;
-            font-family: inherit;
-        }
-
-        .send-button:hover {
-            background: #1FB855;
-        }
-
-        .send-button:disabled {
-            background: #9CA3AF;
-            cursor: not-allowed;
-        }
-
-        .whatsapp-icon {
-            font-size: 20px;
-        }
-
-        .powered-by {
-            text-align: center;
-            font-size: 11px;
-            color: #9CA3AF;
-            margin-top: 16px;
-        }
-
-        .powered-by a {
-            color: #1D9E75;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .success-screen {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            gap: 16px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: #E8F5E9;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-
-        .success-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #0F1A2E;
-        }
-
-        .success-message {
-            font-size: 14px;
-            color: #6B7280;
-            max-width: 300px;
-            line-height: 1.6;
-        }
-
-        .open-whatsapp-btn {
-            padding: 14px 28px;
-            background: #25D366;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: inherit;
-        }
-
-        .error-field {
-            font-size: 12px;
-            color: #EF4444;
-            margin-top: 4px;
-        }
-
-        .field-error {
-            border-color: #EF4444 !important;
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 12px;
-            flex-wrap: wrap;
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 11px;
-            color: #6B7280;
-        }
-
-        .video-container {
-            width: 100%;
-            background: #0F1A2E;
-        }
-
-        .video-container video {
-            width: 100%;
-            max-height: 320px;
-            object-fit: cover;
-            display: block;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F5F7FA; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #1D9E75, #0F1A2E); padding: 16px 20px; display: flex; align-items: center; gap: 10px; }
+        .header-logo { width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .header-text { color: white; font-size: 18px; font-weight: 700; }
+        .header-sub { color: rgba(255,255,255,0.7); font-size: 12px; }
+        .loading-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; }
+        .spinner { width: 48px; height: 48px; border: 4px solid #E5E7EB; border-top: 4px solid #1D9E75; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loading-text { color: #6B7280; font-size: 14px; }
+        .error-screen { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; padding: 20px; text-align: center; }
+        .error-icon { font-size: 64px; }
+        .error-title { font-size: 20px; font-weight: 700; color: #0F1A2E; }
+        .error-message { font-size: 14px; color: #6B7280; max-width: 300px; line-height: 1.6; }
+        .main-content { display: none; max-width: 480px; margin: 0 auto; padding: 0 0 40px 0; }
+        .ad-image-container { width: 100%; background: #E5E7EB; position: relative; overflow: hidden; }
+        .ad-image { width: 100%; max-height: 320px; object-fit: cover; display: block; }
+        .ad-image-placeholder { width: 100%; height: 240px; background: linear-gradient(135deg, #1D9E75, #0F1A2E); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+        .ad-image-placeholder .icon { font-size: 48px; opacity: 0.8; }
+        .ad-image-placeholder .text { color: white; font-size: 16px; font-weight: 600; }
+        .content-section { background: white; margin: 12px; border-radius: 16px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .business-name { font-size: 22px; font-weight: 700; color: #0F1A2E; margin-bottom: 4px; }
+        .campaign-title { font-size: 16px; color: #1D9E75; font-weight: 600; margin-bottom: 8px; }
+        .campaign-description { font-size: 14px; color: #6B7280; line-height: 1.6; margin-bottom: 12px; }
+        .campaign-caption { font-size: 14px; color: #0F1A2E; font-style: italic; padding: 12px; background: #F5F7FA; border-radius: 8px; border-left: 3px solid #1D9E75; }
+        .location-badge { display: inline-flex; align-items: center; gap: 4px; background: #E8F5E9; color: #1D9E75; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; margin-top: 12px; }
+        .form-section { background: white; margin: 0 12px 12px; border-radius: 16px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .form-title { font-size: 18px; font-weight: 700; color: #0F1A2E; margin-bottom: 4px; }
+        .form-subtitle { font-size: 13px; color: #6B7280; margin-bottom: 20px; }
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+        .form-input { width: 100%; padding: 14px 16px; border: 1.5px solid #E5E7EB; border-radius: 12px; font-size: 15px; color: #0F1A2E; background: #F9FAFB; outline: none; transition: border-color 0.2s; font-family: inherit; }
+        .form-input:focus { border-color: #1D9E75; background: white; }
+        .phone-row { display: flex; gap: 8px; }
+        .phone-prefix { padding: 14px 12px; border: 1.5px solid #E5E7EB; border-radius: 12px; font-size: 15px; color: #0F1A2E; background: #F9FAFB; font-weight: 600; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+        .phone-input { flex: 1; }
+        textarea.form-input { resize: none; min-height: 100px; }
+        .send-button { width: 100%; padding: 16px; background: #25D366; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.2s; font-family: inherit; }
+        .send-button:hover { background: #1FB855; }
+        .send-button:disabled { background: #9CA3AF; cursor: not-allowed; }
+        .powered-by { text-align: center; font-size: 11px; color: #9CA3AF; margin-top: 16px; }
+        .powered-by a { color: #1D9E75; text-decoration: none; font-weight: 600; }
+        .success-screen { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; padding: 20px; text-align: center; }
+        .success-icon { width: 80px; height: 80px; background: #E8F5E9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+        .success-title { font-size: 22px; font-weight: 700; color: #0F1A2E; }
+        .success-message { font-size: 14px; color: #6B7280; max-width: 300px; line-height: 1.6; }
+        .open-whatsapp-btn { padding: 14px 28px; background: #25D366; color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: inherit; }
+        .error-field { font-size: 12px; color: #EF4444; margin-top: 4px; }
+        .field-error { border-color: #EF4444 !important; }
+        .trust-badges { display: flex; justify-content: center; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+        .trust-badge { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #6B7280; }
+        .video-container { width: 100%; background: #0F1A2E; }
+        .video-container video { width: 100%; max-height: 320px; object-fit: cover; display: block; }
+        .debug-box { background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px; padding: 10px; margin: 10px; font-size: 11px; color: #92400E; display: none; }
     </style>
 </head>
 <body>
@@ -421,38 +73,32 @@
 
 <div class="loading-screen" id="loadingScreen">
     <div class="spinner"></div>
-    <div class="loading-text">Loading campaign...</div>
+    <div class="loading-text" id="loadingText">Loading campaign...</div>
 </div>
 
 <div class="error-screen" id="errorScreen">
     <div class="error-icon">😕</div>
-    <div class="error-title">Campaign Not Found</div>
-    <div class="error-message">This link may have expired or is no longer active. Please contact the person who shared this with you.</div>
+    <div class="error-title" id="errorTitle">Campaign Not Found</div>
+    <div class="error-message" id="errorMessage">This link may have expired or is no longer active. Please contact the person who shared this with you.</div>
 </div>
 
 <div class="main-content" id="mainContent">
     <div class="ad-image-container" id="adMediaContainer"></div>
-
     <div class="content-section">
         <div class="business-name" id="businessName"></div>
         <div class="campaign-title" id="campaignTitle"></div>
         <div class="campaign-description" id="campaignDescription"></div>
         <div class="campaign-caption" id="campaignCaption"></div>
-        <div class="location-badge" id="locationBadge">
-            📍 <span id="locationText"></span>
-        </div>
+        <div class="location-badge">📍 <span id="locationText"></span></div>
     </div>
-
     <div class="form-section">
         <div class="form-title">Get in Touch</div>
         <div class="form-subtitle">Fill in your details and we will connect you with this business on WhatsApp instantly.</div>
-
         <div class="form-group">
             <label class="form-label">Your Name *</label>
             <input type="text" class="form-input" id="nameInput" placeholder="Enter your full name">
             <div class="error-field" id="nameError"></div>
         </div>
-
         <div class="form-group">
             <label class="form-label">Phone Number *</label>
             <div class="phone-row">
@@ -461,26 +107,21 @@
             </div>
             <div class="error-field" id="phoneError"></div>
         </div>
-
         <div class="form-group">
             <label class="form-label">Your Message *</label>
             <textarea class="form-input" id="messageInput" placeholder="I am interested in your product/service..."></textarea>
             <div class="error-field" id="messageError"></div>
         </div>
-
         <button class="send-button" id="sendButton" onclick="submitForm()">
-            <span class="whatsapp-icon">📱</span>
-            Send via WhatsApp
+            <span>📱</span> Send via WhatsApp
         </button>
-
         <div class="trust-badges">
             <div class="trust-badge">🔒 Secure</div>
             <div class="trust-badge">✅ Verified Business</div>
             <div class="trust-badge">🇺🇬 Uganda</div>
         </div>
-
         <div class="powered-by">
-            Powered by <a href="https://statusreach.ug" target="_blank">StatusReach UG</a> — Uganda's Marketing Platform
+            Powered by <a href="https://statusreachug.github.io/landing" target="_blank">StatusReach UG</a>
         </div>
     </div>
 </div>
@@ -489,328 +130,331 @@
     <div class="success-icon">✅</div>
     <div class="success-title">Message Sent!</div>
     <div class="success-message" id="successMessage">Your message has been sent. The business will contact you on WhatsApp shortly.</div>
-    <button class="open-whatsapp-btn" id="openWhatsAppBtn">
-        📱 Open WhatsApp
-    </button>
+    <button class="open-whatsapp-btn" id="openWhatsAppBtn">📱 Open WhatsApp</button>
     <div class="powered-by" style="margin-top: 8px;">
-        Powered by <a href="https://statusreach.ug">StatusReach UG</a>
+        Powered by <a href="https://statusreachug.github.io/landing">StatusReach UG</a>
     </div>
 </div>
 
 <script>
-    const SUPABASE_URL = 'https://nbgcdesuvjawbfuywgnv.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5iZ2NkZXN1dmphd2JmdXl3Z252Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MjkzMTMsImV4cCI6MjA5NTEwNTMxM30.Q0hYnaVQh89YKmInpdtBL_oepZkqWUE6LtJOV7g7ME4';
+const SUPABASE_URL = 'https://nbgcdesuvjawbfuywgnv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5iZ2NkZXN1dmphd2JmdXl3Z252Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MjkzMTMsImV4cCI6MjA5NTEwNTMxM30.Q0hYnaVQh89YKmInpdtBL_oepZkqWUE6LtJOV7g7ME4';
 
-    let campaignData = null;
-    let assignmentData = null;
-    let businessWhatsApp = null;
-    let whatsappUrl = null;
+let campaignData = null;
+let assignmentData = null;
+let whatsappUrl = null;
 
-    async function supabaseQuery(table, filters) {
-        let url = `${SUPABASE_URL}/rest/v1/${table}?select=*`;
-        if (filters) url += `&${filters}`;
-        const response = await fetch(url, {
-            headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        return await response.json();
-    }
+function log(msg) {
+    console.log('[StatusReach]', msg);
+    document.getElementById('loadingText').textContent = msg;
+}
 
-    async function supabaseInsert(table, data) {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-            method: 'POST',
-            headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify(data)
-        });
-        return response.ok;
-    }
-
-    async function supabaseRpc(funcName, params) {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${funcName}`, {
-            method: 'POST',
-            headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(params)
-        });
-        return await response.json();
-    }
-
-    function getRefFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('ref') || params.get('code') || params.get('r');
-    }
-
-    function getTrackingCodeFromRef(ref) {
-        if (!ref) return null;
-        return ref.slice(-6);
-    }
-
-    async function getUserIP() {
-        try {
-            const response = await fetch('https://api.ipify.org?format=json');
-            const data = await response.json();
-            return data.ip || '';
-        } catch (e) {
-            return '';
+async function fetchSupabase(table, filter) {
+    const url = `${SUPABASE_URL}/rest/v1/${table}?${filter}&limit=1`;
+    const res = await fetch(url, {
+        headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
         }
+    });
+    const data = await res.json();
+    return Array.isArray(data) ? data[0] : null;
+}
+
+async function fetchSupabaseAll(table, filter) {
+    const url = `${SUPABASE_URL}/rest/v1/${table}?${filter}`;
+    const res = await fetch(url, {
+        headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+    });
+    return await res.json();
+}
+
+async function insertSupabase(table, data) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+        method: 'POST',
+        headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(data)
+    });
+    return res.ok;
+}
+
+async function callRpc(funcName, params) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${funcName}`, {
+        method: 'POST',
+        headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    });
+    return await res.json();
+}
+
+async function getIP() {
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        return data.ip || '';
+    } catch(e) { return ''; }
+}
+
+function getRef() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('ref') || params.get('code') || params.get('r') || '';
+}
+
+async function loadCampaign() {
+    const ref = getRef();
+    log('Loading campaign for ref: ' + ref);
+
+    if (!ref) {
+        showError('Invalid Link', 'No campaign reference found in this link.');
+        return;
     }
 
-    async function loadCampaign() {
-        const ref = getRefFromUrl();
+    try {
+        log('Searching for tracking link...');
 
-        if (!ref) {
-            showError();
+        // Search by exact ref in tracking_link column
+        // The tracking link is stored as: https://statusreachug.github.io/landing/?ref=XXXX
+        // We search for assignments where tracking_link contains the ref
+
+        const allAssignments = await fetchSupabaseAll(
+            'sharer_assignments',
+            `tracking_link=like.*${encodeURIComponent(ref)}*&link_status=eq.active`
+        );
+
+        log('Assignments found: ' + (allAssignments ? allAssignments.length : 0));
+
+        let assignment = null;
+
+        if (allAssignments && allAssignments.length > 0) {
+            assignment = allAssignments[0];
+        } else {
+            // Try searching without link_status filter
+            const allAssignments2 = await fetchSupabaseAll(
+                'sharer_assignments',
+                `tracking_link=like.*${encodeURIComponent(ref)}*`
+            );
+            if (allAssignments2 && allAssignments2.length > 0) {
+                assignment = allAssignments2[0];
+            }
+        }
+
+        if (!assignment) {
+            // Try searching with just the last 6 characters (campaign code)
+            const campaignCode = ref.slice(-6);
+            log('Trying campaign code: ' + campaignCode);
+            const byCode = await fetchSupabaseAll(
+                'sharer_assignments',
+                `tracking_link=like.*${campaignCode}`
+            );
+            if (byCode && byCode.length > 0) {
+                assignment = byCode[0];
+            }
+        }
+
+        if (!assignment) {
+            log('No assignment found');
+            showError('Campaign Not Found', 'This link does not match any active campaign. It may have expired.');
             return;
         }
 
-        try {
-            const trackingCode = getTrackingCodeFromRef(ref);
+        log('Assignment found: ' + assignment.id);
 
-            const assignments = await supabaseQuery(
-                'sharer_assignments',
-                `tracking_link=like.*${ref}*&limit=1`
-            );
-
-            let assignment = null;
-            if (assignments && assignments.length > 0) {
-                assignment = assignments[0];
-            } else {
-                const assignmentsByCode = await supabaseQuery(
-                    'sharer_assignments',
-                    `tracking_link=like.*${trackingCode}&limit=1`
-                );
-                if (assignmentsByCode && assignmentsByCode.length > 0) {
-                    assignment = assignmentsByCode[0];
-                }
-            }
-
-            if (!assignment) {
-                showError();
-                return;
-            }
-
-            if (assignment.link_status === 'expired') {
-                showExpiredError();
-                return;
-            }
-
-            assignmentData = assignment;
-
-            const campaigns = await supabaseQuery(
-                'campaigns',
-                `id=eq.${assignment.campaign_id}&limit=1`
-            );
-
-            if (!campaigns || campaigns.length === 0) {
-                showError();
-                return;
-            }
-
-            campaignData = campaigns[0];
-
-            const businesses = await supabaseQuery(
-                'users',
-                `id=eq.${campaignData.business_id}&limit=1`
-            );
-
-            const business = businesses && businesses.length > 0 ? businesses[0] : null;
-            const businessName = business ? business.full_name : 'Business';
-
-            renderCampaign(campaignData, businessName, assignment);
-
-        } catch (error) {
-            console.error('Error loading campaign:', error);
-            showError();
+        if (assignment.link_status === 'expired') {
+            showError('Campaign Ended', 'This campaign has reached its limit and is no longer active.');
+            return;
         }
+
+        assignmentData = assignment;
+
+        log('Loading campaign details...');
+        const campaign = await fetchSupabase('campaigns', `id=eq.${assignment.campaign_id}`);
+
+        if (!campaign) {
+            showError('Campaign Not Found', 'Campaign details could not be loaded.');
+            return;
+        }
+
+        campaignData = campaign;
+        log('Loading business details...');
+
+        const business = await fetchSupabase('users', `id=eq.${campaign.business_id}`);
+        const businessName = business ? (business.full_name || business.email || 'Business') : 'Business';
+        const businessPhone = business ? (business.whatsapp_number || business.phone || null) : null;
+
+        log('Rendering campaign...');
+        renderCampaign(campaign, businessName, businessPhone, assignment);
+
+    } catch(err) {
+        console.error('Error:', err);
+        showError('Error Loading Campaign', 'Something went wrong. Please try again. Error: ' + err.message);
+    }
+}
+
+function renderCampaign(campaign, businessName, businessPhone, assignment) {
+    document.getElementById('businessName').textContent = businessName;
+    document.getElementById('campaignTitle').textContent = campaign.title || '';
+    document.getElementById('campaignDescription').textContent = campaign.description || '';
+    document.getElementById('locationText').textContent = campaign.target_location || 'Uganda';
+
+    const caption = campaign.caption || '';
+    if (caption) {
+        document.getElementById('campaignCaption').textContent = caption;
+        document.getElementById('campaignCaption').style.display = 'block';
+    } else {
+        document.getElementById('campaignCaption').style.display = 'none';
     }
 
-    function renderCampaign(campaign, businessName, assignment) {
-        document.getElementById('businessName').textContent = businessName;
-        document.getElementById('campaignTitle').textContent = campaign.title || '';
-        document.getElementById('campaignDescription').textContent = campaign.description || '';
-        document.getElementById('campaignCaption').textContent = campaign.caption || '';
-        document.getElementById('locationText').textContent = campaign.target_location || 'Uganda';
+    const mediaContainer = document.getElementById('adMediaContainer');
 
-        const mediaContainer = document.getElementById('adMediaContainer');
+    if (campaign.ad_image_url) {
+        const img = document.createElement('img');
+        img.className = 'ad-image';
+        img.src = campaign.ad_image_url;
+        img.alt = campaign.title || 'Ad';
+        img.onerror = function() {
+            mediaContainer.innerHTML = `<div class="ad-image-placeholder"><div class="icon">📢</div><div class="text">${campaign.title || 'Advertisement'}</div></div>`;
+        };
+        mediaContainer.appendChild(img);
+    } else if (campaign.ad_video_url) {
+        const div = document.createElement('div');
+        div.className = 'video-container';
+        const video = document.createElement('video');
+        video.src = campaign.ad_video_url;
+        video.controls = true;
+        video.playsInline = true;
+        div.appendChild(video);
+        mediaContainer.appendChild(div);
+    } else {
+        mediaContainer.innerHTML = `<div class="ad-image-placeholder"><div class="icon">📢</div><div class="text">${campaign.title || 'Advertisement'}</div></div>`;
+    }
 
-        if (campaign.ad_image_url) {
-            const img = document.createElement('img');
-            img.className = 'ad-image';
-            img.src = campaign.ad_image_url;
-            img.alt = campaign.title;
-            img.onerror = () => {
-                mediaContainer.innerHTML = `
-                    <div class="ad-image-placeholder">
-                        <div class="icon">📢</div>
-                        <div class="text">${campaign.title}</div>
-                    </div>`;
-            };
-            mediaContainer.appendChild(img);
-        } else if (campaign.ad_video_url) {
-            const videoContainer = document.createElement('div');
-            videoContainer.className = 'video-container';
-            const video = document.createElement('video');
-            video.src = campaign.ad_video_url;
-            video.controls = true;
-            video.playsInline = true;
-            videoContainer.appendChild(video);
-            mediaContainer.appendChild(videoContainer);
+    const defaultMsg = `Hi! I saw your ad "${campaign.title || 'your product'}" and I am interested. Please tell me more.`;
+    document.getElementById('messageInput').value = defaultMsg;
+
+    window._businessPhone = businessPhone;
+
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+}
+
+async function submitForm() {
+    const name = document.getElementById('nameInput').value.trim();
+    const phone = document.getElementById('phoneInput').value.trim();
+    const message = document.getElementById('messageInput').value.trim();
+
+    // Clear errors
+    ['name','phone','message'].forEach(f => {
+        document.getElementById(f+'Error').textContent = '';
+        document.getElementById(f+'Input').classList.remove('field-error');
+    });
+
+    let hasError = false;
+    if (!name) {
+        document.getElementById('nameError').textContent = 'Please enter your name.';
+        document.getElementById('nameInput').classList.add('field-error');
+        hasError = true;
+    }
+    if (!phone || phone.replace(/\D/g,'').length < 9) {
+        document.getElementById('phoneError').textContent = 'Please enter a valid Uganda phone number (9 digits).';
+        document.getElementById('phoneInput').classList.add('field-error');
+        hasError = true;
+    }
+    if (!message) {
+        document.getElementById('messageError').textContent = 'Please enter a message.';
+        document.getElementById('messageInput').classList.add('field-error');
+        hasError = true;
+    }
+    if (hasError) return;
+
+    const btn = document.getElementById('sendButton');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner" style="width:20px;height:20px;border-width:2px;border-top-color:white"></div> Processing...';
+
+    try {
+        const ip = await getIP();
+        const ref = getRef();
+
+        const fullMessage = `*New Lead via StatusReach UG*\n\n*Name:* ${name}\n*Phone:* +256${phone.replace(/\D/g,'')}\n*Message:* ${message}\n\n_Powered by StatusReach UG_`;
+
+        const businessPhone = window._businessPhone;
+        if (businessPhone) {
+            const cleanPhone = businessPhone.replace(/\D/g,'').replace(/^256/,'').replace(/^0/,'');
+            whatsappUrl = `https://wa.me/256${cleanPhone}?text=${encodeURIComponent(fullMessage)}`;
         } else {
-            mediaContainer.innerHTML = `
-                <div class="ad-image-placeholder">
-                    <div class="icon">📢</div>
-                    <div class="text">${campaign.title}</div>
-                </div>`;
+            whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullMessage)}`;
         }
 
-        document.getElementById('messageInput').value =
-            `Hi! I saw your ad for "${campaign.title}" and I am interested. Please tell me more.`;
-
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-    }
-
-    async function submitForm() {
-        const name = document.getElementById('nameInput').value.trim();
-        const phone = document.getElementById('phoneInput').value.trim();
-        const message = document.getElementById('messageInput').value.trim();
-
-        document.getElementById('nameError').textContent = '';
-        document.getElementById('phoneError').textContent = '';
-        document.getElementById('messageError').textContent = '';
-        document.getElementById('nameInput').classList.remove('field-error');
-        document.getElementById('phoneInput').classList.remove('field-error');
-        document.getElementById('messageInput').classList.remove('field-error');
-
-        let hasError = false;
-
-        if (!name) {
-            document.getElementById('nameError').textContent = 'Please enter your name.';
-            document.getElementById('nameInput').classList.add('field-error');
-            hasError = true;
-        }
-
-        if (!phone || phone.length < 9) {
-            document.getElementById('phoneError').textContent = 'Please enter a valid Uganda phone number.';
-            document.getElementById('phoneInput').classList.add('field-error');
-            hasError = true;
-        }
-
-        if (!message) {
-            document.getElementById('messageError').textContent = 'Please enter a message.';
-            document.getElementById('messageInput').classList.add('field-error');
-            hasError = true;
-        }
-
-        if (hasError) return;
-
-        const sendButton = document.getElementById('sendButton');
-        sendButton.disabled = true;
-        sendButton.innerHTML = '<div class="spinner" style="width:20px;height:20px;border-width:2px"></div> Processing...';
-
-        try {
-            const ipAddress = await getUserIP();
-            const ref = getRefFromUrl();
-
-            const fullMessage = `*StatusReach UG Lead*\n\n` +
-                `*Name:* ${name}\n` +
-                `*Phone:* +256${phone}\n` +
-                `*Message:* ${message}\n\n` +
-                `_Sent via StatusReach UG_`;
-
-            const businesses = await supabaseQuery(
-                'users',
-                `id=eq.${campaignData.business_id}&limit=1`
-            );
-
-            let businessPhone = null;
-            if (businesses && businesses.length > 0) {
-                businessPhone = businesses[0].phone ||
-                    businesses[0].whatsapp_number || null;
-            }
-
-            whatsappUrl = businessPhone
-                ? `https://wa.me/+256${businessPhone.replace(/\D/g, '').replace(/^256/, '').replace(/^0/, '')}?text=${encodeURIComponent(fullMessage)}`
-                : `https://wa.me/?text=${encodeURIComponent(fullMessage)}`;
-
+        // Record the conversation click
+        if (assignmentData && campaignData) {
             try {
-                const result = await supabaseRpc('record_conversation_click', {
+                await callRpc('record_conversation_click', {
                     p_campaign_id: campaignData.id,
                     p_sharer_id: assignmentData.sharer_id,
                     p_tracking_link: assignmentData.tracking_link,
-                    p_ip_address: ipAddress,
-                    p_device_id: ref || ''
+                    p_ip_address: ip,
+                    p_device_id: ref
                 });
-
-                console.log('Conversation recorded:', result);
-            } catch (e) {
-                console.error('Recording failed:', e);
+                console.log('Conversation recorded successfully');
+            } catch(e) {
+                console.error('Record click failed:', e);
             }
 
+            // Save lead
             try {
-                await supabaseInsert('leads', {
+                await insertSupabase('leads', {
                     campaign_id: campaignData.id,
                     sharer_id: assignmentData.sharer_id,
                     lead_name: name,
-                    lead_phone: `+256${phone}`,
+                    lead_phone: `+256${phone.replace(/\D/g,'')}`,
                     lead_message: message,
-                    ip_address: ipAddress,
+                    ip_address: ip,
                     tracking_ref: ref,
                     whatsapp_sent: true
                 });
-            } catch (e) {
-                console.log('Lead insert failed - table may not exist yet');
+            } catch(e) {
+                console.log('Lead save failed:', e);
             }
-
-            document.getElementById('successMessage').textContent =
-                `Your message has been sent to ${document.getElementById('businessName').textContent}. They will contact you on WhatsApp shortly.`;
-
-            document.getElementById('openWhatsAppBtn').onclick = () => {
-                window.open(whatsappUrl, '_blank');
-            };
-
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('successScreen').style.display = 'flex';
-
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-            }, 500);
-
-        } catch (error) {
-            console.error('Submit error:', error);
-            sendButton.disabled = false;
-            sendButton.innerHTML = '<span class="whatsapp-icon">📱</span> Send via WhatsApp';
-            alert('Something went wrong. Please try again.');
         }
-    }
 
-    function showError() {
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('errorScreen').style.display = 'flex';
-    }
+        const businessDisplayName = document.getElementById('businessName').textContent;
+        document.getElementById('successMessage').textContent =
+            `Your message has been sent to ${businessDisplayName}. They will contact you on WhatsApp shortly.`;
 
-    function showExpiredError() {
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('errorScreen').innerHTML = `
-            <div class="error-icon">🔒</div>
-            <div class="error-title">Campaign Ended</div>
-            <div class="error-message">This campaign has reached its conversation limit and is no longer active. Thank you for your interest.</div>
-        `;
-        document.getElementById('errorScreen').style.display = 'flex';
-    }
+        document.getElementById('openWhatsAppBtn').onclick = () => window.open(whatsappUrl, '_blank');
 
-    loadCampaign();
+        document.getElementById('mainContent').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'flex';
+
+        setTimeout(() => window.open(whatsappUrl, '_blank'), 800);
+
+    } catch(err) {
+        console.error('Submit error:', err);
+        btn.disabled = false;
+        btn.innerHTML = '<span>📱</span> Send via WhatsApp';
+        alert('Something went wrong. Please try again.');
+    }
+}
+
+function showError(title, message) {
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('errorTitle').textContent = title || 'Campaign Not Found';
+    document.getElementById('errorMessage').textContent = message || 'This link may have expired.';
+    document.getElementById('errorScreen').style.display = 'flex';
+}
+
+loadCampaign();
 </script>
 </body>
 </html>
