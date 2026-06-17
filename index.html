@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StatusReach UG</title>
@@ -340,7 +345,7 @@ function renderCampaign(campaign, businessName, businessPhone, assignment) {
         mediaContainer.innerHTML = `<div class="ad-image-placeholder"><div class="icon">📢</div><div class="text">${campaign.title || 'Advertisement'}</div></div>`;
     }
 
-    const defaultMsg = `Hi! I saw your ad "${campaign.title || 'your product'}" and I am interested. Please tell me more.`;
+    const defaultMsg = `Hi! I saw your ad "${campaign.title || 'your product'}" from StatusReach UG and I am interested. Please tell me more.`;
     document.getElementById('messageInput').value = defaultMsg;
 
     window._businessPhone = businessPhone;
