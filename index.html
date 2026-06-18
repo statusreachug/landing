@@ -306,8 +306,8 @@ async function loadCampaign() {
         showError('Error Loading Campaign', 'Something went wrong. Please try again. Error: ' + err.message);
     }
 }
-
 function renderCampaign(campaign, businessName, businessPhone, assignment) {
+    document.getElementById('errorScreen').style.display = 'none';
     document.getElementById('businessName').textContent = businessName;
     document.getElementById('campaignTitle').textContent = campaign.title || '';
     document.getElementById('campaignDescription').textContent = campaign.description || '';
