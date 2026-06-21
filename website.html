@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StatusReach UG — Ads that travel through people, not platforms</title>
+<meta name="description" content="StatusReach UG connects Uganda's local businesses with everyday people who share ads on their WhatsApp Status — and get paid for every customer who reaches out.">
+<meta name="theme-color" content="#0F1A2E">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy: #0F1A2E;
+    --navy-soft: #182740;
+    --green: #1D9E75;
+    --green-deep: #146B51;
+    --green-bright: #25D366;
+    --amber: #F2A93B;
+    --paper: #FBF8F2;
+    --paper-dim: #F2EEE4;
+    --ink: #1A2233;
+    --ink-soft: #5B6472;
+    --line: rgba(15,26,46,0.10);
+    --line-light: rgba(255,255,255,0.14);
+    --radius: 18px;
+    --container: 1120px;
+    --shadow: 0 1px 2px rgba(15,26,46,0.04), 0 12px 32px -16px rgba(15,26,46,0.18);
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  p{ margin:0; }
+  a{ color: inherit; text-decoration: none; }
+  ul{ list-style: none; margin:0; padding:0; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family: inherit; }
+
+  .container{ max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green-deep);
+  }
+  .eyebrow .dot{
+    width:7px; height:7px; border-radius:50%; background: var(--green-bright);
+    box-shadow: 0 0 0 0 rgba(37,211,102,0.55);
+    animation: pulse 2.2s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(37,211,102,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(37,211,102,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding: 14px 24px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; font-family:'Inter',sans-serif;
+    border: 1.5px solid transparent; cursor:pointer; white-space:nowrap;
+    transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .btn:active{ transform: scale(0.97); }
+  .btn--primary{ background: var(--navy); color: #fff; }
+  .btn--primary:hover{ background: var(--navy-soft); }
+  .btn--green{ background: var(--green-bright); color: #fff; }
+  .btn--green:hover{ background: var(--green-deep); }
+  .btn--outline{ background: transparent; color: var(--navy); border-color: var(--line); }
+  .btn--outline:hover{ border-color: var(--navy); }
+  .btn--ghost-light{ background: transparent; color:#fff; border-color: var(--line-light); }
+  .btn--ghost-light:hover{ border-color: #fff; }
+  .btn:focus-visible{ outline: 2.5px solid var(--amber); outline-offset: 2px; }
+  a:focus-visible, button:focus-visible{ outline: 2.5px solid var(--amber); outline-offset: 2px; }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(251,248,242,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .nav-logo{ display:flex; align-items:center; gap:9px; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; color: var(--navy); }
+  .nav-logo-mark{
+    width:32px; height:32px; border-radius:9px;
+    background: linear-gradient(135deg, var(--green), var(--navy));
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .nav-links{ display:flex; align-items:center; gap:32px; }
+  .nav-links a{ font-size:14.5px; font-weight:500; color: var(--ink-soft); }
+  .nav-links a:hover{ color: var(--navy); }
+  .nav-cta{ display:flex; align-items:center; gap:14px; }
+  .nav-toggle{
+    display:none; width:38px; height:38px; border-radius:10px; border:1px solid var(--line);
+    background:transparent; align-items:center; justify-content:center; flex-direction:column; gap:4px;
+  }
+  .nav-toggle span{ width:18px; height:2px; background: var(--navy); border-radius:2px; transition: transform 0.2s ease, opacity 0.2s ease; }
+  .nav-toggle.is-open span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.is-open span:nth-child(2){ opacity:0; }
+  .nav-toggle.is-open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+  @media (max-width: 860px){
+    .nav-links{
+      position:absolute; top:68px; left:0; right:0; background: var(--paper);
+      flex-direction:column; align-items:flex-start; gap:0; border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden; transition: max-height 0.25s ease;
+      box-shadow: var(--shadow);
+    }
+    .nav-links.is-open{ max-height: 280px; }
+    .nav-links a{ width:100%; padding:14px 24px; border-bottom:1px solid var(--line); }
+    .nav-cta .btn--outline{ display:none; }
+    .nav-toggle{ display:flex; }
+  }
+  @media (max-width: 460px){
+    .nav-logo-text{ display:none; }
+    .nav-cta .btn--primary{ padding:11px 16px; font-size:13.5px; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 64px 0 80px; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns: 1fr; gap:48px; align-items:center; }
+  .hero-headline{ font-size: clamp(34px, 5.4vw, 56px); margin-top:18px; max-width: 11.5ch; }
+  .hero-headline .accent{ color: var(--green-deep); }
+  .hero-sub{ font-size:17px; color: var(--ink-soft); max-width:46ch; margin-top:18px; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+  .hero-meta{ display:flex; gap:22px; margin-top:34px; flex-wrap:wrap; }
+  .hero-meta-item{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color: var(--ink-soft); display:flex; align-items:center; gap:7px; }
+  .hero-meta-item .sw{ width:8px;height:8px;border-radius:2px; }
+
+  /* phone mockup */
+  .phone-wrap{ display:flex; justify-content:center; position:relative; }
+  .phone{
+    width: 270px; background: var(--navy); border-radius: 34px; padding: 10px;
+    box-shadow: var(--shadow); position:relative;
+  }
+  .phone-screen{ background:#10182A; border-radius:26px; overflow:hidden; position:relative; min-height: 460px; }
+  .status-bar-mini{ display:flex; gap:4px; padding:10px 12px 0; }
+  .status-bar-mini span{ flex:1; height:3px; border-radius:2px; background: rgba(255,255,255,0.18); overflow:hidden; }
+  .status-bar-mini span::after{ content:''; display:block; height:100%; background: var(--green-bright); }
+  .status-bar-mini span:nth-child(1)::after{ width:100%; }
+  .status-bar-mini span:nth-child(2)::after{ width:62%; }
+  .status-head{ display:flex; align-items:center; gap:10px; padding:14px 14px 0; }
+  .ring{
+    width:38px; height:38px; border-radius:50%; padding:2.5px;
+    background: conic-gradient(from 0deg, var(--green-bright), var(--amber), var(--green-bright));
+    animation: spin 6s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){ .ring{ animation:none; } }
+  .ring-inner{ width:100%; height:100%; border-radius:50%; background:#10182A; display:flex; align-items:center; justify-content:center; font-size:16px; }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  .status-name{ color:#fff; font-size:13px; font-weight:600; }
+  .status-sub{ color: rgba(255,255,255,0.5); font-size:10.5px; font-family:'IBM Plex Mono',monospace; }
+  .status-media{
+    margin:14px; height:230px; border-radius:18px;
+    background: linear-gradient(155deg, var(--green) 0%, var(--navy) 100%);
+    display:flex; align-items:center; justify-content:center; font-size:56px;
+    position:relative;
+  }
+  .status-caption{ margin: 0 14px 10px; color:#fff; font-size:13px; font-weight:500; }
+  .status-cta{
+    margin:0 14px 16px; padding:11px; border-radius:12px; background: rgba(255,255,255,0.08);
+    color: var(--green-bright); font-size:12.5px; font-weight:600; text-align:center;
+    border:1px solid rgba(255,255,255,0.12);
+  }
+  .ref-tag{
+    position:absolute; right:8px; bottom:-16px; background:#fff; color: var(--navy);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+    padding:7px 11px; border-radius:9px; box-shadow: var(--shadow);
+    display:flex; align-items:center; gap:6px;
+  }
+  .ref-tag .sw{ width:7px;height:7px;border-radius:50%; background: var(--green-bright); }
+
+  @media (min-width: 920px){
+    .hero-grid{ grid-template-columns: 1.05fr 0.95fr; gap:40px; }
+    .hero-headline{ max-width:none; }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  .section{ padding: 88px 0; }
+  .section-head{ max-width: 640px; }
+  .section-head h2{ font-size: clamp(26px, 3.6vw, 38px); margin-top:14px; }
+  .section--dark{ background: var(--navy); color:#fff; }
+  .section--dark h2, .section--dark h3{ color:#fff; }
+  .section--alt{ background: var(--paper-dim); }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .hiw-track{
+    display:flex; gap:8px; margin: 40px 0 8px; position: sticky; top: 80px; z-index:5;
+    background: var(--paper); padding-top:4px;
+  }
+  .segment{ flex:1; height:5px; border-radius:3px; background: var(--line); overflow:hidden; }
+  .segment::after{
+    content:''; display:block; height:100%; width:0%; border-radius:3px;
+    background: linear-gradient(90deg, var(--green), var(--green-bright));
+    transition: width 0.5s ease;
+  }
+  .segment.is-active::after{ width:100%; }
+  .segment.is-done::after{ width:100%; background: var(--ink-soft); opacity:0.35; }
+
+  .hiw-steps{ display:flex; flex-direction:column; gap: 28px; padding-top: 20px; }
+  .step{
+    display:grid; grid-template-columns: 56px 1fr; gap:20px;
+    padding: 28px 0; border-bottom:1px solid var(--line);
+    opacity:0.45; transform: translateY(6px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .step:last-child{ border-bottom:none; }
+  .step.in-view{ opacity:1; transform:none; }
+  .step-num{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color: var(--green-deep);
+    width:44px; height:44px; border-radius:50%; border:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step h3{ font-size:19px; margin-bottom:8px; }
+  .step p{ color: var(--ink-soft); font-size:14.5px; max-width: 52ch; }
+
+  @media (min-width:760px){
+    .hiw-track{ top:84px; }
+  }
+
+  /* ---------- VALUE GRID (businesses / sharers) ---------- */
+  .split{ display:grid; grid-template-columns:1fr; gap:48px; align-items:start; }
+  @media (min-width:880px){ .split{ grid-template-columns: 0.85fr 1.15fr; gap: 64px; } }
+  .split p.lead{ color: var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:48ch; }
+  .value-list{ display:flex; flex-direction:column; gap:0; }
+  .value-item{ display:flex; gap:16px; padding:22px 0; border-top:1px solid var(--line); }
+  .value-item:last-child{ border-bottom:1px solid var(--line); }
+  .value-glyph{
+    width:38px; height:38px; border-radius:11px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+    background: var(--paper-dim); border:1px solid var(--line);
+  }
+  .section--dark .value-glyph{ background: rgba(255,255,255,0.06); border-color: var(--line-light); }
+  .value-item h4{ font-family:'Inter',sans-serif; font-size:15.5px; font-weight:600; color: var(--navy); margin:0 0 4px; }
+  .section--dark .value-item h4{ color:#fff; }
+  .value-item p{ font-size:14px; color: var(--ink-soft); }
+  .section--dark .value-item p{ color: rgba(255,255,255,0.62); }
+  .section--dark .value-item{ border-color: var(--line-light); }
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-strip{ display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  @media (min-width:760px){ .trust-strip{ grid-template-columns: repeat(3,1fr); } }
+  .trust-item{ padding: 30px 24px; display:flex; align-items:flex-start; gap:14px; border-bottom:1px solid var(--line); }
+  @media (min-width:760px){
+    .trust-item{ border-bottom:none; }
+    .trust-item + .trust-item{ border-left:1px solid var(--line); }
+  }
+  .trust-item .glyph{ font-size:20px; }
+  .trust-item p{ font-size:14px; color: var(--ink-soft); line-height:1.5; }
+  .trust-item strong{ display:block; color: var(--navy); font-size:14.5px; font-weight:600; margin-bottom:2px; }
+
+  /* ---------- FINAL CTA ---------- */
+  .cta-band{ text-align:center; padding: 96px 0; }
+  .cta-band h2{ font-size: clamp(28px,4.6vw,44px); max-width:16ch; margin:14px auto 0; }
+  .cta-band p{ color: rgba(255,255,255,0.65); max-width:46ch; margin:16px auto 0; font-size:15.5px; }
+  .cta-band .hero-ctas{ justify-content:center; margin-top:30px; }
+
+  /* ---------- FOOTER ---------- */
+  .footer{ padding: 56px 0 36px; }
+  .footer-top{ display:flex; flex-direction:column; gap:36px; padding-bottom:36px; border-bottom:1px solid var(--line); }
+  @media (min-width:760px){ .footer-top{ flex-direction:row; justify-content:space-between; } }
+  .footer-brand p{ color: var(--ink-soft); font-size:13.5px; margin-top:8px; max-width:32ch; }
+  .footer-cols{ display:flex; gap:56px; flex-wrap:wrap; }
+  .footer-col h5{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color: var(--ink-soft); margin-bottom:14px; }
+  .footer-col a, .footer-col span{ display:block; font-size:14px; color: var(--navy); margin-bottom:10px; }
+  .footer-col a:hover{ color: var(--green-deep); }
+  .footer-bottom{ display:flex; flex-direction:column; gap:10px; padding-top:24px; }
+  @media (min-width:760px){ .footer-bottom{ flex-direction:row; justify-content:space-between; align-items:center; } }
+  .footer-bottom span{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="nav-logo">
+      <span class="nav-logo-mark">📡</span><span class="nav-logo-text">StatusReach UG</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#for-businesses">For Businesses</a></li>
+      <li><a href="#for-sharers">For Sharers</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn--outline">Contact</a>
+      <a href="#for-sharers" class="btn btn--primary">Get started</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Now onboarding across Uganda</span>
+      <h1 class="hero-headline">Ads that travel through <span class="accent">people</span>, not platforms.</h1>
+      <p class="hero-sub">StatusReach UG connects local businesses with everyday Ugandans who share ads on their WhatsApp Status — and get paid for every customer who taps through and reaches out.</p>
+      <div class="hero-ctas">
+        <a href="#for-businesses" class="btn btn--primary">I'm a business →</a>
+        <a href="#for-sharers" class="btn btn--outline">I want to earn →</a>
+      </div>
+      <div class="hero-meta">
+        <span class="hero-meta-item"><span class="sw" style="background:var(--green-bright)"></span>Runs through WhatsApp</span>
+        <span class="hero-meta-item"><span class="sw" style="background:var(--amber)"></span>No app to install</span>
+        <span class="hero-meta-item"><span class="sw" style="background:var(--navy)"></span>Every lead tracked</span>
+      </div>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="status-bar-mini"><span></span><span></span></div>
+          <div class="status-head">
+            <div class="ring"><div class="ring-inner">🧵</div></div>
+            <div>
+              <div class="status-name">Kampala Thread Co.</div>
+              <div class="status-sub">Sponsored · via StatusReach</div>
+            </div>
+          </div>
+          <div class="status-media">👟</div>
+          <div class="status-caption">New arrivals just dropped 🔥 Tap to shop</div>
+          <div class="status-cta">View business on WhatsApp →</div>
+        </div>
+        <div class="ref-tag"><span class="sw"></span> ref=joan_482x</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> How it works</span>
+      <h2>One ad, four people, one sale.</h2>
+    </div>
+
+    <div class="hiw-track" aria-hidden="true">
+      <span class="segment" data-segment="1"></span>
+      <span class="segment" data-segment="2"></span>
+      <span class="segment" data-segment="3"></span>
+      <span class="segment" data-segment="4"></span>
+    </div>
+
+    <div class="hiw-steps">
+      <article class="step" data-step="1">
+        <div class="step-num">01</div>
+        <div>
+          <h3>A business posts a campaign</h3>
+          <p>A shop, salon, or service uploads one photo and a short pitch. No design team, no agency, no minimum budget.</p>
+        </div>
+      </article>
+      <article class="step" data-step="2">
+        <div class="step-num">02</div>
+        <div>
+          <h3>A sharer adds it to their Status</h3>
+          <p>Anyone — students, boda riders, hustlers — can pick it up and post it to their WhatsApp Status or social pages, with their own personal link attached.</p>
+        </div>
+      </article>
+      <article class="step" data-step="3">
+        <div class="step-num">03</div>
+        <div>
+          <h3>A customer taps through</h3>
+          <p>Someone watching that Status taps the link, sees the business, and messages them directly on WhatsApp — no app to download.</p>
+        </div>
+      </article>
+      <article class="step" data-step="4">
+        <div class="step-num">04</div>
+        <div>
+          <h3>Everyone gets credit</h3>
+          <p>The conversation is automatically traced back to the sharer who brought it in, so businesses see real leads and sharers see real earnings.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="for-businesses">
+  <div class="container split">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> For Businesses</span>
+      <h2>Advertising that rides on trust you didn't have to build.</h2>
+      <p class="lead">Your ad doesn't sit on a billboard or a feed nobody scrolls past — it shows up inside someone's WhatsApp Status, shared by a person their friends already trust.</p>
+      <div class="hero-ctas" style="margin-top:28px;">
+        <a href="#contact" class="btn btn--primary">Start a campaign →</a>
+      </div>
+    </div>
+    <div class="value-list">
+      <div class="value-item">
+        <div class="value-glyph">🖼️</div>
+        <div><h4>No design team required</h4><p>Upload a photo, write a caption, and your campaign is ready for sharers to pick up.</p></div>
+      </div>
+      <div class="value-item">
+        <div class="value-glyph">🎯</div>
+        <div><h4>Pay for results, not impressions</h4><p>Every lead is tracked back to the exact sharer who brought it in — not a vague reach number.</p></div>
+      </div>
+      <div class="value-item">
+        <div class="value-glyph">💬</div>
+        <div><h4>Customers land straight in your WhatsApp</h4><p>No new dashboard, no new inbox — conversations arrive where you already work.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="for-sharers">
+  <div class="container split">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> For Sharers</span>
+      <h2>Turn the Status you already post into income.</h2>
+      <p class="lead">You're already posting your day on WhatsApp Status. StatusReach UG lets you add a business's ad to that same Status — with your own tracking link — and earn every time someone taps through.</p>
+      <div class="hero-ctas" style="margin-top:28px;">
+        <a href="#contact" class="btn btn--green">Become a sharer →</a>
+      </div>
+    </div>
+    <div class="value-list">
+      <div class="value-item">
+        <div class="value-glyph">👥</div>
+        <div><h4>No followers required</h4><p>Just consistent posting and people in your circle who actually trust you.</p></div>
+      </div>
+      <div class="value-item">
+        <div class="value-glyph">🗂️</div>
+        <div><h4>Pick the campaigns you want</h4><p>Choose ads that genuinely fit your audience — nothing assigned to you blindly.</p></div>
+      </div>
+      <div class="value-item">
+        <div class="value-glyph">📊</div>
+        <div><h4>See what you've earned, in real time</h4><p>Every click and every lead is tracked back to your name automatically.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip container">
+  <div class="trust-item">
+    <span class="glyph">🇺🇬</span>
+    <p><strong>Built in Uganda</strong>For Uganda's local businesses and the people who hustle for them.</p>
+  </div>
+  <div class="trust-item">
+    <span class="glyph">💬</span>
+    <p><strong>Runs entirely through WhatsApp</strong>Nothing new to download — for businesses, sharers, or customers.</p>
+  </div>
+  <div class="trust-item">
+    <span class="glyph">🔒</span>
+    <p><strong>Every lead is tracked</strong>So credit — and payment — always goes to the right person.</p>
+  </div>
+</section>
+
+<section class="section section--dark cta-band" id="contact">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--green-bright)"><span class="dot"></span> Join StatusReach UG</span>
+    <h2>Ready to be part of it?</h2>
+    <p>Whether you've got something to sell or an audience that trusts you — there's a place for you here.</p>
+    <div class="hero-ctas">
+      <a href="#" id="whatsappContact" class="btn btn--green">Talk to us on WhatsApp →</a>
+      <a href="#" id="emailContact" class="btn btn--ghost-light">Email us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="nav-logo"><span class="nav-logo-mark">📡</span> StatusReach UG</a>
+        <p>Connecting businesses with customers, one WhatsApp Status at a time.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Site</h5>
+          <a href="#how-it-works">How it works</a>
+          <a href="#for-businesses">For Businesses</a>
+          <a href="#for-sharers">For Sharers</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <span id="footerWhatsapp">WhatsApp</span>
+          <span id="footerEmail">Email</span>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 StatusReach UG. Built in Uganda.</span>
+      <span>Status tracking tool: statusreachug.github.io/landing</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Real contact details for StatusReach UG
+  const CONTACT_WHATSAPP = '256773730940';
+  const CONTACT_EMAIL = 'support.statusreachug@gmail.com';
+
+  const waLink = `https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent("Hi, I'd like to know more about StatusReach UG.")}`;
+  document.getElementById('whatsappContact').href = waLink;
+  document.getElementById('emailContact').href = `mailto:${CONTACT_EMAIL}`;
+  document.getElementById('footerWhatsapp').outerHTML = `<a href="${waLink}">WhatsApp</a>`;
+  document.getElementById('footerEmail').outerHTML = `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`;
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    navToggle.classList.toggle('is-open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('is-open');
+    navToggle.classList.remove('is-open');
+  }));
+
+  // How-it-works status segments, driven by step visibility
+  const steps = document.querySelectorAll('.step');
+  const segments = document.querySelectorAll('.segment');
+
+  function setSegments(activeIndex){
+    segments.forEach((seg, i) => {
+      seg.classList.remove('is-active','is-done');
+      if(i < activeIndex) seg.classList.add('is-done');
+      else if(i === activeIndex) seg.classList.add('is-active');
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          const idx = parseInt(entry.target.dataset.step, 10) - 1;
+          setSegments(idx);
+        }
+      });
+    }, { threshold: 0.5, rootMargin: '-15% 0px -15% 0px' });
+
+    steps.forEach(step => stepObserver.observe(step));
+  } else {
+    steps.forEach(step => step.classList.add('in-view'));
+  }
+</script>
+</body>
+</html>

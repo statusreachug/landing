@@ -126,7 +126,7 @@
             <div class="trust-badge">🇺🇬 Uganda</div>
         </div>
         <div class="powered-by">
-            Powered by <a href="https://statusreachug.github.io/landing" target="_blank">StatusReach UG</a>
+            Powered by <a href="https://statusreachug.github.io/landing/website.html" target="_blank">StatusReach UG</a>
         </div>
     </div>
 </div>
@@ -137,7 +137,7 @@
     <div class="success-message" id="successMessage">Your message has been sent. The business will contact you on WhatsApp shortly.</div>
     <button class="open-whatsapp-btn" id="openWhatsAppBtn">📱 Open WhatsApp</button>
     <div class="powered-by" style="margin-top: 8px;">
-        Powered by <a href="https://statusreachug.github.io/landing">StatusReach UG</a>
+        Powered by <a href="https://statusreachug.github.io/landing/website.html">StatusReach UG</a>
     </div>
 </div>
 
@@ -409,7 +409,8 @@ async function submitForm() {
                     p_sharer_id: assignmentData.sharer_id,
                     p_tracking_link: assignmentData.tracking_link,
                     p_ip_address: ip,
-                    p_device_id: ref
+                    p_device_id: ref,
+                    p_lead_phone: `+256${phone.replace(/\D/g,'')}`
                 });
                 console.log('Conversation recorded successfully');
             } catch(e) {
