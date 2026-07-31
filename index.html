@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StatusReach UG</title>
+    <title>StatusReach — Africa's Social Media Ad Marketplace</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F5F7FA; min-height: 100vh; }
@@ -71,7 +71,7 @@
 <div class="header">
     <div class="header-logo">📡</div>
     <div>
-        <div class="header-text">StatusReach UG</div>
+        <div class="header-text">StatusReach</div>
         <div class="header-sub">Connecting businesses with customers</div>
     </div>
 </div>
@@ -126,7 +126,7 @@
             <div class="trust-badge">🇺🇬 Uganda</div>
         </div>
         <div class="powered-by">
-            Powered by <a href="https://statusreachug.github.io/landing/website.html" target="_blank">StatusReach UG</a>
+            Powered by <a href="https://statusreachug.github.io/landing/website.html" target="_blank">StatusReach</a>
         </div>
     </div>
 </div>
@@ -137,7 +137,7 @@
     <div class="success-message" id="successMessage">Your message has been sent. The business will contact you on WhatsApp shortly.</div>
     <button class="open-whatsapp-btn" id="openWhatsAppBtn">📱 Open WhatsApp</button>
     <div class="powered-by" style="margin-top: 8px;">
-        Powered by <a href="https://statusreachug.github.io/landing/website.html">StatusReach UG</a>
+        Powered by <a href="https://statusreachug.github.io/landing/website.html">StatusReach</a>
     </div>
 </div>
 
@@ -345,7 +345,7 @@ function renderCampaign(campaign, businessName, businessPhone, assignment) {
         mediaContainer.innerHTML = `<div class="ad-image-placeholder"><div class="icon">📢</div><div class="text">${campaign.title || 'Advertisement'}</div></div>`;
     }
 
-    const defaultMsg = `Hi! I saw your ad "${campaign.title || 'your product'}" from StatusReach UG and I am interested. Please tell me more.`;
+    const defaultMsg = `Hi! I saw your ad "${campaign.title || 'your product'}" from StatusReach and I am interested. Please tell me more.`;
     document.getElementById('messageInput').value = defaultMsg;
 
     window._businessPhone = businessPhone;
@@ -391,7 +391,7 @@ async function submitForm() {
         const ip = await getIP();
         const ref = getRef();
 
-        const fullMessage = `*New Lead via StatusReach UG*\n\n*Name:* ${name}\n*Phone:* +256${phone.replace(/\D/g,'')}\n*Message:* ${message}\n\n_Powered by StatusReach UG_`;
+        const fullMessage = `*New Lead via StatusReach*\n\n*Name:* ${name}\n*Phone:* +256${phone.replace(/\D/g,'')}\n*Message:* ${message}\n\n_Sent via StatusReach — Africa's Social Media Ad Marketplace_`;
 
         const businessPhone = window._businessPhone;
         if (businessPhone) {
